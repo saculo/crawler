@@ -1,11 +1,11 @@
-package org.saculo.crawler;
+package org.saculo.crawler.domain.dto;
 
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
 @Builder
-class Article {
+public class CreatedArticle {
     private String href;
     private String title;
     private String content;

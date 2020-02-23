@@ -1,4 +1,6 @@
-package org.saculo.crawler;
+package org.saculo.crawler.adapter.provider;
+
+import org.saculo.crawler.domain.Article;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -12,18 +14,18 @@ class ProviderManager {
     private static final int THREADS_AMOUNT = 2;
     private final ExecutorService executorService = Executors.newFixedThreadPool(THREADS_AMOUNT);
 
-    List<CompletableFuture<List<SampleDTO>>> runProviders (List<Provider> providers) {
+    List<CompletableFuture<List<Article>>> runProviders (List<Provider> providers) {
         return providers.stream()
                         .map(this::runProvider)
                         .collect(Collectors.toList());
     }
 
-    private CompletableFuture<List<SampleDTO>> runProvider (Provider provider) {
+    private CompletableFuture<List<Article>> runProvider (Provider provider) {
         return waitForCompleted(extractArticlesFromAllPages(provider));
     }
 
-    private CompletableFuture<List<SampleDTO>> waitForCompleted (
-            List<CompletableFuture<List<SampleDTO>>> results) {
+    private CompletableFuture<List<Article>> waitForCompleted (
+            List<CompletableFuture<List<Article>>> results) {
         var futureResultArray = results.toArray(
                 new CompletableFuture[results.size()]
         );
@@ -35,17 +37,17 @@ class ProviderManager {
         );
     }
 
-    private List<CompletableFuture<List<SampleDTO>>> extractArticlesFromAllPages (Provider provider) {
+    private List<CompletableFuture<List<Article>>> extractArticlesFromAllPages (Provider provider) {
         return setListOfPagesNumbers().stream()
                                       .map(number -> extractAsync(number, provider))
                                       .collect(Collectors.toList());
     }
 
-    private CompletableFuture<List<SampleDTO>> extractAsync (Integer number, Provider provider) {
+    private CompletableFuture<List<Article>> extractAsync (Integer number, Provider provider) {
         return CompletableFuture.supplyAsync(() -> extractDtoFromSinglePage(number, provider), executorService);
     }
 
-    private List<SampleDTO> extractDtoFromSinglePage (Integer pageNumber, Provider provider) {
+    private List<Article> extractDtoFromSinglePage (Integer pageNumber, Provider provider) {
         return provider.extractElements(pageNumber)
                        .stream()
                        .map(provider::extractArticle)
