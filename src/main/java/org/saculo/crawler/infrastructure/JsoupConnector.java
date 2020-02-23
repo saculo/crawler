@@ -1,11 +1,11 @@
-package org.saculo.crawler.adapter.provider;
+package org.saculo.crawler.infrastructure;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 
-class Connector {
+public class JsoupConnector {
     private Document document;
 
     public Document connectToUrl (String url) {
