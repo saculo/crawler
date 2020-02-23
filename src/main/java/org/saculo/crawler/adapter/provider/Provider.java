@@ -1,7 +1,8 @@
-package org.saculo.crawler;
+package org.saculo.crawler.adapter.provider;
 
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.saculo.crawler.domain.Article;
 
 import java.net.URI;
 
@@ -10,6 +11,6 @@ public interface Provider {
     String extractHref (Element element);
     String extractTitle (Element element);
     String extractBody (URI href);
-    SampleDTO extractArticle (Element element);
+    Article extractArticle (Element element);
 }
 
