@@ -20,6 +20,11 @@
             <version>1.9.1</version>
         </dependency>
         <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.199</version>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.10</version>
@@ -44,5 +49,23 @@
             <artifactId>vavr</artifactId>
             <version>0.10.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-core</artifactId>
+            <version>2.0-M2-groovy-3.0</version>
+        </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>6.2.4</version>
+                <configuration>
+                    <url>jdbc:h2:~/test</url>
+                    <user>sa</user>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

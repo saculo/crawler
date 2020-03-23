@@ -5,10 +5,11 @@ import org.saculo.crawler.domain.dto.CreatedArticle;
 import org.saculo.crawler.domain.port.ArticleRepository;
 
 @RequiredArgsConstructor
-class CreateArticle {
+class ArticleCreator {
     private final ArticleRepository articleRepository;
 
     Article create(CreatedArticle createdArticle) {
         return articleRepository.save(Article.create(createdArticle));
     }
+
 }
