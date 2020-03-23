@@ -1,5 +1,6 @@
 package org.saculo.crawler.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Getter;
 import org.saculo.crawler.domain.dto.CreatedArticle;
@@ -9,6 +10,7 @@ import java.util.UUID;
 
 @Getter
 @Builder
+@JsonFormat
 public class Article {
     private UUID id;
     private String href;
