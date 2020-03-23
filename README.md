@@ -4,7 +4,7 @@ Sample asynchronous crawler created with Project Reactor, Ratpack, Jsoup and Vav
 
 ## Usage
 Use maven to build .JAR file with command:
-```maven
+```mvn
 mvn clean package
 ```
 
