@@ -27,7 +27,7 @@ class ProviderManager {
 
     private CompletableFuture<List<CreatedArticle>> waitForCompleted (
             List<CompletableFuture<List<CreatedArticle>>> results) {
-        var futureResultArray = results.toArray(
+        CompletableFuture[] futureResultArray = results.toArray(
                 new CompletableFuture[results.size()]
         );
         CompletableFuture<Void> combinedFuture = CompletableFuture.allOf(futureResultArray);

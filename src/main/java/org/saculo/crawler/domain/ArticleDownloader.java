@@ -1,6 +1,7 @@
 package org.saculo.crawler.domain;
 
 import io.vavr.collection.Stream;
+import io.vavr.control.Either;
 import lombok.RequiredArgsConstructor;
 import org.saculo.crawler.domain.dto.CreatedArticle;
 import org.saculo.crawler.domain.port.ProviderClient;
@@ -10,6 +11,6 @@ class ArticleDownloader {
     private final ProviderClient providerClient;
 
     Stream<CreatedArticle> download() {
-        return Stream.ofAll(providerClient.getArticles());
+        return providerClient.getArticles();
     }
 }
