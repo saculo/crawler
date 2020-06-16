@@ -7,15 +7,14 @@ import org.jooq.impl.DSL;
 import java.sql.SQLException;
 
 public class JOOQDriver {
-    private static DatabaseConnector databaseConnector = new DatabaseConnector();
+    private static final DatabaseConnector databaseConnector = new DatabaseConnector();
 
     public static DSLContext createContext() {
         try {
             return DSL.using(databaseConnector.connect(), SQLDialect.H2);
         }
         catch (SQLException e) {
-            e.printStackTrace();
+            throw new IllegalStateException(e.getMessage());
         }
-        return null;
     }
 }

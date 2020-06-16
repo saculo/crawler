@@ -3,15 +3,17 @@ package org.saculo.crawler.adapter.provider.reactor;
 import io.vavr.collection.List;
 import io.vavr.collection.Stream;
 import org.saculo.crawler.adapter.provider.Provider;
-import org.saculo.crawler.adapter.provider.codecouple.CodeCoupleProvider;
 import org.saculo.crawler.domain.dto.CreatedArticle;
 import org.saculo.crawler.domain.port.ProviderClient;
 import reactor.core.publisher.Flux;
 
-
 public class ReactorManager implements ProviderClient {
     private static final int PAGES_AMOUNT = 2;
-    private final List<CodeCoupleProvider> providers = List.of(new CodeCoupleProvider());
+    private final List<Provider> providers;
+
+    public ReactorManager (final List<Provider> providers) {
+        this.providers = providers;
+    }
 
     @Override
     public Stream<CreatedArticle> getArticles () {
