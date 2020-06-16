@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 class DatabaseConnector {
-    private String username;
-    private String password;
-    private String url;
+    private final String username;
+    private final String password;
+    private final String url;
 
     DatabaseConnector () {
         this.username = "sa";

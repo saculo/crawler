@@ -13,7 +13,7 @@ import java.util.Optional;
 public class CodeCoupleProvider implements Provider {
     private static final String URL = "https://codecouple.pl/page/%s/";
     private static final String PROVIDER = "Codecouple";
-    private JsoupConnector connector = new JsoupConnector();
+    private final JsoupConnector connector = new JsoupConnector();
 
     @Override
     public Elements extractElements(Integer page) {
